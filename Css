@@ -1,0 +1,118 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    direction: rtl;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+header {
+    background-color: #222;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 24px;
+    color: gold;
+    font-family: 'Courier New', monospace;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.products-section {
+    padding: 20px;
+    background-image: url('hakamani-design.jpg');
+    background-size: cover;
+}
+
+.product-category {
+    margin-bottom: 30px;
+}
+
+.product-card {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.add-to-cart {
+    background-color: gold;
+    border: none;
+    padding: 10px;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+footer {
+    background-color: #222;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+.register-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.register-section input {
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+}
+
+.register-section button {
+    background-color: gold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.admin-login-section, .admin-panel-section {
+    padding: 20px;
+}
+
+.admin-login-section input, .admin-panel-section input {
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+}
+
+.admin-login-section button, .admin-panel-section button {
+    background-color: gold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
