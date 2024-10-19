@@ -1,0 +1,112 @@
+const adminUsername = "NASA"; // نام کاربری ادمین
+const adminPassword = "nr7787nr"; // رمز عبور ادمین
+let cartItems = []; // سبد خرید
+let products = []; // لیست محصولات
+
+document.addEventListener("DOMContentLoaded", () => {
+    // افزودن محصولات اولیه
+    products = [
+        { name: "تی‌شرت", price: 50000, image: "t-shirt.jpg" },
+        { name: "ساعت", price: 300000, image: "watch.jpg" },
+        { name: "تابلو دیواری", price: 120000, image: "painting.jpg" },
+        { name: "کفش کراکس", price: 70000, image: "crocs.jpg" },
+        { name: "آرت بوک", price: 90000, image: "artbook.jpg" }
+    ];
+    renderProducts();
+    document.getElementById("add-product-form").addEventListener("submit", addProduct);
+    document.getElementById("admin-login-form").addEventListener("submit", adminLogin);
+    document.getElementById("checkout-button").addEventListener("click", showCheckoutForm);
+    document.getElementById("apply-styles").addEventListener("click", applyStyles);
+});
+
+function renderProducts() {
+    const productsList = document.getElementById("products-list");
+    productsList.innerHTML = ""; // پاک کردن لیست محصولات
+    products.forEach((product, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${product.name} - ${product.price} تومان`;
+        productsList.appendChild(li);
+    });
+}
+
+function addProduct(event) {
+    event.preventDefault();
+    const productName = document.getElementById("product-name").value;
+    const productPrice = document.getElementById("product-price").value;
+    const productImage = document.getElementById("product-image").value;
+
+    // افزودن محصول جدید به لیست
+    products.push({ name: productName, price: Number(productPrice), image: productImage });
+    renderProducts();
+    document.getElementById("add-product-form").reset();
+}
+
+function adminLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById("admin-username").value;
+    const password = document.getElementById("admin-password").value;
+    const message = document.getElementById("admin-login-message");
+
+    if (username === adminUsername && password === adminPassword) {
+        document.getElementById("admin-panel").style.display = "block";
+        document.getElementById("admin-login").style.display = "none";
+        message.textContent = "";
+    } else {
+        message.textContent = "نام کاربری یا رمز عبور اشتباه است.";
+    }
+}
+
+function addToCart(product) {
+    cartItems.push(product);
+    renderCart();
+}
+
+function renderCart() {
+    const cartItemsDiv = document.getElementById("cart-items");
+    cartItemsDiv.innerHTML = ""; // پاک کردن سبد خرید
+    if (cartItems.length === 0) {
+        cartItemsDiv.innerHTML = "<p>سبد خرید شما خالی است.</p>";
+    } else {
+        cartItems.forEach(item => {
+            const p = document.createElement("p");
+            p.textContent = `${item.name} - ${item.price} تومان`;
+            cartItemsDiv.appendChild(p);
+        });
+    }
+}
+
+function showCheckoutForm() {
+    const checkoutForm = document.createElement("form");
+    checkoutForm.innerHTML = `
+        <h3>اطلاعات ارسال</h3>
+        <label for="name">نام و نام خانوادگی:</label>
+        <input type="text" id="name" required>
+        <label for="city">شهر:</label>
+        <input type="text" id="city" required>
+        <label for="state">استان:</label>
+        <input type="text" id="state" required>
+        <label for="address">آدرس دقیق:</label>
+        <input type="text" id="address" required>
+        <label for="postal-code">کد پستی:</label>
+        <input type="text" id="postal-code" required>
+        <button type="submit">تکمیل خرید</button>
+    `;
+
+    checkoutForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("خرید با موفقیت انجام شد!");
+        cartItems = []; // پاک کردن سبد خرید
+        renderCart();
+    });
+
+    const cartSection = document.getElementById("cart");
+    cartSection.appendChild(checkoutForm);
+}
+
+function applyStyles() {
+    const bgColor = document.getElementById("bg-color").value;
+    const textColor = document.getElementById("text-color").value;
+
+    document.documentElement.style.setProperty('--bg-color', bgColor);
+    document.documentElement.style.setProperty('--text-color', textColor);
+}
